@@ -473,30 +473,10 @@ def load_mutation(file_name,output_dir,gene2index):
     mutation_profile[zip(*[(pat2index[p],gene2index[g]) for p,g in pat_gene_pairs])] = 1.
     return mutation_profile, pat2index
 def load_mutation_from_df(df,output_dir,gene2index):
-    
-#    # df should be a patient by gene matrix
-#    pats = df.index
-#    geneset = set(df.columns)&set(gene2index.keys())
-#    print ("\t- Genes in adjacency matrix:", len(geneset))
-#    
-#    # Set up output directory
-#    print ("* Saving patient list to file...")
-#    os.system( 'mkdir -p ' + output_dir )
-#    
-#    # Index mapping for genes
-#    index_map = [ "{}\t{}".format(i, pats[i]) for i in range(len(pats)) ]
-#    with open("{}/index_patients".format(output_dir), 'w') as outfile:
-#        outfile.write( "\n".join(index_map) )
-#    pat2index = { pats[i]: i for i in range(len(pats)) }
-#    
-#    mutation_profile = pd.DataFrame(index=df.index,columns=sorted(gene2index.keys()))
-#    mutation_profile.update(df)
-#    mutation_profile = mutation_profile.fillna(0).as_matrix()
     for gen in df.columns:
         if gen not in gene2index.keys():
             df=df.drop(columns=[str(gen)])
     return df
-#, pat2index
 def load_networkF(file_name, output_dir='', add_selfloop=True):
     # Load a graph
     print ("* Loading network...")
@@ -546,16 +526,12 @@ network_output_dir = 'FI_prop'
 PPR = np.load('{}/ppr_0.3.npy'.format(network_output_dir))
 output_dir = network_output_dir
 mutation_profile=load_mutation_from_df(df,output_dir,gene2index)
-#print(mutation_profile.shape,np.sum(mutation_profile),network.shape,np.sum(network))
-#P_init_train, sample_names_train = load_samples(file_name, node_names)
-#pat_diff = run_diffusion_PPR(P_init_train,np.array(edges))
-#print(pat_diff)
+usion_PPR(P_init_train,np.array(edges))
 pat_diff1 = run_diffusion_PPR(PPR,mutation_profile)
 rst_prob = 0.3
 converge_rate = 0.0001
-#np.savetxt('pat_diff1.csv',pat_diff1,delimiter=',')
 M_prop=pd.DataFrame(pat_diff1,columns=mutation_profile.columns, index=df.rename_axis('index',axis=0).index.values)
-M_prop.to_csv('difMPROP1.csv')
+M_prop.to_csv('propagatedData.csv')
 M_prop_pca, pca_components, explained_variance_ratio = run_pca(M_prop)
 explained_variance_ratio.tofile('explained_variance_ratio.txt',sep='\n')
 print('explained_variance_ratio:',explained_variance_ratio.sum())
@@ -602,57 +578,7 @@ def run_clustering_mp(propagated_profile_pca, maxK, func):
     
     return labels
 propagated_profile_pca=M_prop_pca.iloc[:, :70]
-#for i in range(3,10):
-#  labels = run_AgglomerativeClustering([propagated_profile_pca, i])
-#  print(accuracy_score(y,labels))
-#
-#  labelspd = pd.DataFrame(data=np.array(labels).T,index=propagated_profile_pca.index,
-#                          columns=['K'])
-#  labelspd.to_csv('Aggkprop'+str(i)+'.csv')
-#realY = pd.DataFrame(data=np.array(y).T,index=propagated_profile_pca.index,
-#                          columns=['K'])
-#print(labelspd.K.value_counts())
-#print(realY.K.value_counts())
-#sns.set(color_codes=True)
-##sns.distplot(M_prop_pca.iloc[:, 70])
-##plt.savefig('dist.jpg', format='jpg', dpi=900) # This does, too
-#plt.figure(figsize=(10, 10))  
-#trainlabel= pd.read_csv("BRCA_training_lables_2.txt",delimiter="\t")
-#testlabel=pd.read_csv("BRCA_validation_lables_2.txt",delimiter="\t")
-#labelData=np.concatenate((np.array(trainlabel),np.array(testlabel)),axis=0)
-#print(labelData[:,1])
 
-#ax=sns.countplot(labelData[:,1])
-#plt.savefig('counttype.jpg', format='jpg', dpi=900) # This does, too
-
-
-#import scipy.cluster.hierarchy as shc
-#
-#linked = shc.linkage(propagated_profile_pca, 'single')
-#
-#
-#plt.figure(figsize=(50, 5))  
-#shc.dendrogram(linked,  
-#            orientation='top',
-#            labels=np.array(y),
-#            distance_sort='descending',
-#            show_leaf_counts=True)
-#plt.show()  
-#plt.figure(figsize=(200, 50))  
-#plt.title("Customer Dendograms")  
-#dend = shc.dendrogram(shc.linkage(data, method='ward'))  
-#plt.savefig('dand.pdf', format='pdf', dpi=900) # This does, too
-#def run_coxph(pat2surv_fn, labels, output_dir):
-#    
-#    os.system( 'mkdir -p ' + output_dir )
-#    
-#    pat2surv = pd.read_table(pat2surv_fn,index_col=0)
-#    pat2surv = pd.concat([pat2surv,labels],join='inner',axis=1)
-#    pat2surv.to_csv('{}/pat2surv2labels.txt'.format(output_dir),sep='\t')
-#    
-#    os.system("Rscript label2coxph.R {}".format(output_dir))
-#    return 0
-#run_coxph('../data/pat2clin4surv.txt', labels, '../data/survival/')
 
 ## run network propagation
 print(np.array(mutation_profile.shape))
