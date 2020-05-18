@@ -9,7 +9,7 @@ Clinical and molecular analyses, besides enrichment of genes in numerous biologi
 
 ## Getting Started
 
-![MSDEC schema](MSDEC Schema.jpg)
+![MSDEC schema](https://github.com/nrohani/MolecularSubtypes/blob/master/MSDEC%20Schema.jpg)
 
 ### Prerequisites and Installing packages
 
