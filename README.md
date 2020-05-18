@@ -1,8 +1,8 @@
 
 # Classifying Breast Cancer Molecular Subtypes Using Deep Clustering Approach
 
-Cancer is a complex disease with a high rate of mortality. The characteristics of tumor masses are very heterogeneous; thus, the appropriate classification of tumors is a critical point in the correct treatment. A high level of heterogeneity has also been observed in breast cancer. Therefore, detecting the molecular subtypes of this disease is a worthwhile issue for medicine that could be facilitated using bioinformatics.
-This repository contains the implementated codes of the MSDEC, a method for molecular subtype detection. Preprint version is avialable in https://www.researchsquare.com/article/rs-10143/v1
+Cancer is a complex disease with a high rate of mortality. The characteristics of tumor masses are very heterogeneous; thus, the appropriate classification of tumors is a critical point in the correct treatment. A high level of heterogeneity has also been observed in breast cancer. Therefore, detecting the molecular subtypes of this disease is an essential issue for medicine that could be facilitated using bioinformatics.
+This repository contains the implementation codes of the MSDEC, a method for molecular subtype detection. The preprint version is available in https://www.researchsquare.com/article/rs-10143/v1
 
 ## MSDEC schema
 
@@ -25,6 +25,9 @@ Data: We used breast cancer somatic mutation profiles collected by [Zhang et al.
 ### Codes
 Find MSDEC implementation in [MSDEC.py](https://github.com/nrohani/MolecularSubtypes/blob/master/MSDEC.py)
 ### Results folder
+The result's folder contains the result of finding the best number of clusters based on AUMP and other metrics.
+## Authors
 
-
-
+* **Narjes Rohani** and **Changiz Eslahchi**
+Please do not hesitate to contact us if you have any question:
+Mail: n.rohani@mail.sbu.ac.ir
