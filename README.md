@@ -24,7 +24,7 @@ Data: We used breast cancer somatic mutation profiles collected by [Zhang et al.
 
 ### Codes
 Find MSDEC implementation in [MSDEC.py](https://github.com/nrohani/MolecularSubtypes/blob/master/MSDEC.py)
-### Results folder
+### Result's folder
 The result's folder contains the result of finding the best number of clusters based on AUMP and other metrics.
 ## Authors
 
