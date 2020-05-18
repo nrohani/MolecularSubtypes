@@ -23,7 +23,7 @@ pip install scikit-learn
 Data: We used breast cancer somatic mutation profiles collected by [Zhang et al.](https://github.com/wzhang1984/NBSS/tree/master/data). They have obtained 78 somatic mutation data of 861 breast tumors from TCGA. You can also find this data in [Data.txt](https://github.com/nrohani/MolecularSubtypes/blob/master/Data/Data.txt). We propagated this profile using PPI network ([PPI.txt](https://github.com/nrohani/MolecularSubtypes/blob/master/Data/PPI.txt)) and obtained [propagatedData.txt](https://github.com/nrohani/MolecularSubtypes/blob/master/Data/propagatedData.txt).
 
 ### Codes
-Find DEC clustering implementation in DEC.py
+Find MSDEC implementation in [MSDEC.py](https://github.com/nrohani/MolecularSubtypes/blob/master/MSDEC.py)
 ### Results folder
 
 
