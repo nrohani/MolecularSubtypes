@@ -31,4 +31,4 @@ The result's folder contains the result of finding the best number of clusters b
 Please do not hesitate to contact us if you have any question:
 
 
-Mail: n.rohani@mail.sbu.ac.ir
+Mail: narjesrohani1996@gmail.com
